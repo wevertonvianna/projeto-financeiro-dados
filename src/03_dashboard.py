@@ -1,5 +1,7 @@
 import streamlit as st
 import duckdb
+import os
+import subprocess
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -8,6 +10,10 @@ st.set_page_config(page_title="Dashboard Financeiro", layout="wide")
 
 st.title("📊 Dashboard Analítico de Ativos da B3")
 st.markdown("Análise de cotações e volatilidade processadas via **DuckDB + Parquet**.")
+
+# Garante que o arquivo Parquet existe no servidor do Streamlit
+if not os.path.exists('data/processed/cotacoes.parquet'):
+    subprocess.run(["python", "src/01_limpeza.py"])
 
 # 1. Carregar dados do Parquet via DuckDB
 @st.cache_data

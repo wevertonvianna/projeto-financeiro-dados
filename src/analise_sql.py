@@ -1,4 +1,6 @@
 import duckdb
+import os
+import subprocess
 
 def analisar_risco_retorno():
     # Consulta SQL direta no arquivo Parquet
@@ -23,4 +25,8 @@ def analisar_risco_retorno():
     print(resultado)
 
 if __name__ == "__main__":
+    # Garante que os dados existem antes de carregar
+    if not os.path.exists('data/processed/cotacoes.parquet'):
+        subprocess.run(["python", "src/01_limpeza.py"])
+    
     analisar_risco_retorno()
