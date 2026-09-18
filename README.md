@@ -43,11 +43,11 @@ uv venv
 
 # Ativar o ambiente virtual
 
-# No Windows (PowerShell):
+## No Windows (PowerShell):
 
 .venv\Scripts\activate
 
-# No Linux/macOS:
+## No Linux/macOS:
 
 source .venv/bin/activate
 
